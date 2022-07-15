@@ -52,7 +52,7 @@ Advanced use and more granular control:
 -Level BasicSecurity         Basic security, with no privacy settings added
 -Level BasicPrivacy          Basic privacy, with no security settings added
 -Level HighSecurityBitlocker A subset of high security settings: Disk encryption settings
--Level HighSecurityCredGuard A subset of high security settings: Virtualization-based security settings
+-Level HighSecurityCredGuard A subset of high security settings: Virtualization-based security
 -Level HighSecurityComputer  A subset of high security settings: Computer settings
 -Level HighSecurityDomain    A subset of high security settings: Domain computer settings
 -Level ExtremePrivacy        [experimental] Privacy settings that degrade security and usability
