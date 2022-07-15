@@ -1,0 +1,13 @@
+; ----------------------------------------------------------------------
+; LGPO-text file, used with LGPO.exe.
+;
+; Add new privacy setting for Windows 11
+;
+
+Computer
+SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Dsh
+AllowNewsAndInterests
+DWORD:0
+
+
+; ----------------------------------------------------------------------

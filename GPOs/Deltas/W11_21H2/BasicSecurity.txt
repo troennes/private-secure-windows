@@ -1,0 +1,13 @@
+; ----------------------------------------------------------------------
+; LGPO-text file, used with LGPO.exe.
+;
+; Add basic security setting for Windows 11
+;
+
+Computer
+Software\Policies\Microsoft\Windows Defender\Real-Time Protection
+DisableScriptScanning
+DWORD:0
+
+
+; ----------------------------------------------------------------------

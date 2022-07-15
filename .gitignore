@@ -1,0 +1,5 @@
+*.log
+
+# Unfinished scripts
+Utils/Make.ps1
+Utils/Uninstall.ps1

@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<policyComments xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://www.microsoft.com/GroupPolicy/CommentDefinitions">
+  <policyNamespaces>
+    <using prefix="ns0" namespace="FullArmor.Policies.C9E1D975_EA58_48C3_958E_3BC214D89A2E"></using>
+    <using prefix="ns1" namespace="Microsoft.Policies.Biometrics"></using>
+    <using prefix="ns2" namespace="Microsoft.Policies.CredentialProviders"></using>
+    <using prefix="ns3" namespace="Microsoft.Policies.CredentialsSSP"></using>
+    <using prefix="ns4" namespace="Microsoft.Policies.DmaGuard"></using>
+    <using prefix="ns5" namespace="Microsoft.Policies.EventLogs"></using>
+    <using prefix="ns6" namespace="Microsoft.Policies.NetworkConnections"></using>
+    <using prefix="ns7" namespace="Microsoft.Policies.PowerShell"></using>
+    <using prefix="ns8" namespace="Microsoft.Policies.SecGuide"></using>
+    <using prefix="ns9" namespace="Microsoft.Policies.SmartScreen"></using>
+    <using prefix="ns10" namespace="Microsoft.Policies.TerminalServer"></using>
+    <using prefix="ns11" namespace="Microsoft.Policies.WindowsConnectionManager"></using>
+    <using prefix="ns12" namespace="Microsoft.Policies.WindowsRemoteManagement"></using>
+  </policyNamespaces>
+  <comments>
+    <admTemplate></admTemplate>
+  </comments>
+  <resources minRequiredRevision="1.0">
+    <stringTable></stringTable>
+  </resources>
+</policyComments>

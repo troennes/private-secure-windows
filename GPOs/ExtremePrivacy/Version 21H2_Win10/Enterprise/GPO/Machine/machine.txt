@@ -1,0 +1,92 @@
+
+; Deny Camera access for all apps
+Computer
+SOFTWARE\Policies\Microsoft\Windows\AppPrivacy
+LetAppsAccessCamera
+DWORD:2
+
+; Deny Microphone access for all apps
+Computer
+SOFTWARE\Policies\Microsoft\Windows\AppPrivacy
+LetAppsAccessMicrophone
+DWORD:2
+
+; Do not let any apps to run in background
+Computer
+SOFTWARE\Policies\Microsoft\Windows\AppPrivacy
+LetAppsRunInBackground
+DWORD:2
+
+; Disable Lock Screen
+Computer
+SOFTWARE\Policies\Microsoft\Windows\Personalization
+NoLockScreen
+DWORD:1
+
+; Disable Microsoft Store Apps
+Computer
+SOFTWARE\Policies\Microsoft\WindowsStore
+AutoDownload
+DWORD:2
+
+Computer
+SOFTWARE\Policies\Microsoft\WindowsStore
+DisableStoreApps
+DWORD:1
+
+; Disable Automatic Root Certificates Updates
+Computer
+SOFTWARE\Policies\Microsoft\SystemCertificates\AuthRoot
+DisableRootAutoUpdate
+DWORD:1
+
+; Disable Windows Update
+Computer
+SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
+DisableWindowsUpdateAccess
+DWORD:1
+
+Computer
+SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
+DoNotConnectToWindowsUpdateInternetLocations
+DWORD:1
+
+Computer
+SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
+UpdateServiceUrlAlternate
+SZ:" "
+
+Computer
+SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU
+UseWUServer
+DWORD:1
+
+Computer
+SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
+WUServer
+SZ:" "
+
+Computer
+SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
+WUStatusServer
+SZ:" "
+
+; Disable Defender Signature Updates
+Computer
+SOFTWARE\Policies\Microsoft\Windows Defender\Signature Updates
+FallbackOrder
+SZ:FileShares
+
+Computer
+SOFTWARE\Policies\Microsoft\Windows Defender\Signature Updates
+DefinitionUpdateFileSharesSources
+DELETE
+
+; Disable NCSI
+Computer
+SOFTWARE\Policies\Microsoft\Windows\NetworkConnectivityStatusIndicator
+NoActiveProbe
+DWORD:1
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------

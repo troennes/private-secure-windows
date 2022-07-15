@@ -1,0 +1,14 @@
+
+; Disable Windows Update
+User
+SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\WindowsUpdate
+DisableWindowsUpdateAccess
+DWORD:1
+
+User
+SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\WindowsUpdate
+DisableWindowsUpdateAccessMode
+DWORD:0
+
+; PARSING COMPLETED.
+; ----------------------------------------------------------------------
