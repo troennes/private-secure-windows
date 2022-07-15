@@ -119,6 +119,10 @@ The High level has the following security improvements compared to the Basic lev
 
 The privacy settings are equal in both levels.
 
+### How to verify changed settings before installing?
+
+Download Microsoft's Policy Analyzer tool from [Security Compliance Toolkit](https://www.microsoft.com/download/details.aspx?id=55319), then import GPOs to view which settings they change.
+
 ### Does this baseline improve any applications?
 
 No. Only the Windows operating system and built-in Windows components are covered. There are no improvements to Microsoft Edge and Internet Explorer included here.
