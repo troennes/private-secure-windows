@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="Media/logo.png" height=305px width=500px>
+    <img src="Media/logo.png" height=auto width=500px>
 </p>
 <p align="center"><b>Privacy and security baseline for personal Windows 10 and Windows 11</b></p>
 
