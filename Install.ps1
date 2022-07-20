@@ -34,16 +34,11 @@ Select level of security and privacy settings. "Basic" is the default level
 
 [CmdletBinding()]
 param(
-    #[Parameter(Mandatory=$true)]
     [ValidateSet("Basic","BasicSecurity","BasicPrivacy","HighSecurity","HighSecurityCredGuard", `
         "HighSecurityComputer","HighSecurityDomain","HighSecurityBitlocker","ExtremePrivacy")]
     [string]$Level,
     [string]$LgpoPath = ".\Tools"
 )
-
-#function Run([string]$Path,[string[]]$Arguments,[string]$LogFile){
-#    Start-Process -FilePath $Path -ArgumentList $Arguments -NoNewWindow -Wait -RedirectStandardOutput $LogFile
-#}
 
 function Warn([string]$Msg){
     $Resp = $Host.UI.PromptForChoice("Warning",$Msg,@("&Yes","&No"),1)
@@ -53,11 +48,12 @@ function Warn([string]$Msg){
 }
 
 # Check if supported Windows build
+# Windows 11 22H2 - 22621
 # Windows 11 21H2 - 22000
 # Windows 10 21H2 - 19044
 # Windows 10 21H1 - 19043
 $OSVersion = [environment]::OSVersion
-if (-not $OSVersion.Version.Build -in @(19043,19044,22000)){
+if (-not $OSVersion.Version.Build -in @(19043,19044,22000,22621)){
     $Msg = "Unsupported version of Windows detected. Some settings might not work as intended. " `
     + "Do you want to continue?"
     Warn $Msg
@@ -178,7 +174,7 @@ if ($Level -in @("Basic","BasicSecurity")){
     $GPOs += $BasicSecDomain
     $GPOs += $BasicSecUser
 
-    if ($OSVersion.Version.Build -eq 22000){
+    if ($OSVersion.Version.Build -in @(22000,22621)){
         $Deltas += $DeltaW11_21H2BasicSecurity
     }
 
@@ -207,7 +203,7 @@ if ($Level -in @("HighSecurityDomain"))   { $GPOs += $HighSecDomain }
 if ($Level -in @("Basic","BasicPrivacy")){
     $GPOs += $BasicPrivacy
 
-    if ($OSVersion.Version.Build -eq 22000){
+    if ($OSVersion.Version.Build -in @(22000,22621)){
         $Deltas += $DeltaW11_21H2BasicPrivacy
     }
 
@@ -278,6 +274,7 @@ if ($Level -eq "ExtremePrivacy"){
     RunLGPO "/v /t `"$ExtremePrivacy\Machine\machine.txt`""
     RunLGPO "/v /s `"$ExtremePrivacy\Machine\GptTmpl.inf`""
     RunLGPO "/v /t `"$ExtremePrivacy\User\user.txt`""
+    Log $dline
 }
 
 # Restore original path if modified
