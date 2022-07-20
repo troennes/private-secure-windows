@@ -13,7 +13,7 @@ powershell.exe -ExecutionPolicy Unrestricted -File .\Install.ps1 -Level Basic
 
 ## What is this?
 
-This is a handpicked collection of privacy and security settings for standalone Windows 10 and Windows 11 systems that tries to strike a good balance between privacy, security and usability. It uses group policy and is mainly based on Microsoft's own [Windows security baselines](https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-security-configuration-framework/security-compliance-toolkit-10) and the [Windows Restricted Traffic Limited Functionality Baseline](https://docs.microsoft.com/en-us/windows/privacy/manage-connections-from-windows-operating-system-components-to-microsoft-services).
+This is a handpicked collection of privacy and security settings for standalone Windows 10 and Windows 11 systems that tries to strike a good balance between privacy, security and usability. It uses group policy and is mainly based on Microsoft's [Windows security baselines](https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-security-configuration-framework/security-compliance-toolkit-10) and [Windows Restricted Traffic Limited Functionality Baseline](https://docs.microsoft.com/en-us/windows/privacy/manage-connections-from-windows-operating-system-components-to-microsoft-services).
 
 It comes with two security levels, based on your threat profile:
 
@@ -35,9 +35,10 @@ Includes extra security settings for individuals with a higher threat profile. T
 
 Install the Basic security and privacy baseline:
 
-1. Download the LGPO.exe tool from [Microsoft Security Compliance Toolkit](https://www.microsoft.com/en-us/download/confirmation.aspx?id=55319) and place it in the Tools folder.
+1. (Optional, but recommended) Download the newest LGPO.exe tool from [Microsoft Security Compliance Toolkit](https://www.microsoft.com/en-us/download/confirmation.aspx?id=55319) and place it in the Tools folder.
 2. (Optional, but recommended) Backup your current settings so you can revert later. Run `Backup.ps1` from the Utils folder. E.g. `.\Backup.ps1 -OutputDir C:\tmp\`
-3. Run `Install.ps1` with PowerShell with administrative privileges.
+3. (Optional, but recommended) Review the list of changed settings in [Lists/SettingsOverview.xlsx](Lists/SettingsOverview.xlsx)
+4. Run `Install.ps1` with PowerShell with administrative privileges.
 
 ```powershell
 .\Install.ps1 -Level Basic
@@ -48,6 +49,7 @@ Use another value for `-Level` to select another baseline:
 ```powershell
 -Level Basic                 [default] Basic security and privacy
 -Level HighSecurity          High security settings (assumes basic security setting are in place)
+
 Advanced use and more granular control: 
 -Level BasicSecurity         Basic security, with no privacy settings added
 -Level BasicPrivacy          Basic privacy, with no security settings added
@@ -126,6 +128,10 @@ Download Microsoft's Policy Analyzer tool from [Security Compliance Toolkit](htt
 ### Does this baseline improve any applications?
 
 No. Only the Windows operating system and built-in Windows components are covered. There are no improvements to Microsoft Edge and Internet Explorer included here.
+
+## Contributing
+
+Don't be afraid to contribute! For now, create an issue if you see room for improvement, and we'll take it from there.
 
 ## Credits
 
