@@ -290,7 +290,7 @@ foreach ($d in $Deltas){
 
 if ($AddW11_22H2BasicSecDomain){
     LogAndShowProgress "Applying GPO: $DeltaW11_22H2BasicSecDomain"
-	RunLGPO "v /s `"$DeltaW11_22H2BasicSecDomain`""
+	RunLGPO "/v /s `"$DeltaW11_22H2BasicSecDomain`""
 	Log $dline
 }
 
