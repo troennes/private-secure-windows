@@ -1,0 +1,11 @@
+; ----------------------------------------------------------------------
+; LGPO-text file, used with LGPO.exe.
+;
+; MSFT Windows 11 22H2 - Credential Guard
+
+Computer
+SOFTWARE\Policies\Microsoft\Windows\DeviceGuard
+ConfigureKernelShadowStacksLaunch
+DWORD:1
+
+; ----------------------------------------------------------------------

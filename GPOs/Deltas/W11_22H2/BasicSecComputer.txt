@@ -1,0 +1,41 @@
+; ----------------------------------------------------------------------
+; LGPO-text file, used with LGPO.exe.
+;
+; from MSFT Windows 11 22H2 - Computer
+
+Computer
+Software\Microsoft\Windows\CurrentVersion\Policies\System
+EnableMPR
+DWORD:0
+
+Computer
+Software\Policies\Microsoft\Windows NT\DNSClient
+EnableNetbios
+DWORD:2
+
+Computer
+Software\Policies\Microsoft\Windows\System
+AllowCustomSSPsAPs
+DWORD:0
+
+Computer
+SYSTEM\CurrentControlSet\Control\Lsa
+RunAsPPL
+DWORD:1
+
+
+; from MSFT Windows 11 22H2 - Defender Antivirus
+
+
+Computer
+Software\Policies\Microsoft\Windows Defender\Real-Time Protection
+DisableBehaviorMonitoring
+DWORD:0
+
+Computer
+Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
+56a863a9-875e-4185-98a7-b882c64b5ce5
+SZ:1
+
+
+; ----------------------------------------------------------------------

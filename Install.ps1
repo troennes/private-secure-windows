@@ -162,6 +162,10 @@ $ExtremePrivacy = ".\GPOs\ExtremePrivacy\Version 21H2_Win10\Enterprise\GPO"
 # Extra settings for other versions of Windows
 $DeltaW11_21H2BasicPrivacy = ".\GPOs\Deltas\W11_21H2\BasicPrivacy.txt"
 $DeltaW11_21H2BasicSecurity = ".\GPOs\Deltas\W11_21H2\BasicSecurity.txt"
+$DeltaW11_22H2BasicSecComputer = ".\GPOs\Deltas\W11_22H2\BasicSecComputer.txt"
+$DeltaW11_22H2BasicSecDomain = ".\GPOs\Deltas\W11_22H2\BasicSecDomain\GptTmpl.inf"
+$DeltaW11_22H2HighSecComputer = ".\GPOs\Deltas\W11_22H2\HighSecComputer.txt"
+$DeltaW11_22H2HighSecCredGuard = ".\GPOs\Deltas\W11_22H2\HighSecCredGuard.txt"
 
 # Determine which GPOs to import
 $GPOs = @()
@@ -176,6 +180,11 @@ if ($Level -in @("Basic","BasicSecurity")){
 
     if ($OSVersion.Version.Build -in @(22000,22621)){
         $Deltas += $DeltaW11_21H2BasicSecurity
+    }
+	
+	if ($OSVersion.Version.Build -eq 22621){
+        $Deltas += $DeltaW11_22H2BasicSecComputer
+		$AddW11_22H2BasicSecDomain = $true
     }
 
     # Warn against self-lockout if user is connected remotely on a public network
@@ -193,12 +202,28 @@ if ($Level -in @("HighSecurity")){
     $GPOs += $HighSecComputer
     $GPOs += $HighSecCredGuard
     $GPOs += $HighSecDomain
+	
+	if ($OSVersion.Version.Build -eq 22621){
+        $Deltas += $DeltaW11_22H2HighSecComputer
+		$Deltas += $DeltaW11_22H2HighSecCredGuard
+    }
 }
 
 if ($Level -in @("HighSecurityBitlocker")){ $GPOs += $HighSecBitlocker }
-if ($Level -in @("HighSecurityComputer")) { $GPOs += $HighSecComputer }
-if ($Level -in @("HighSecurityCredGuard")){ $GPOs += $HighSecCredGuard }
 if ($Level -in @("HighSecurityDomain"))   { $GPOs += $HighSecDomain }
+if ($Level -in @("HighSecurityComputer")) { 
+	$GPOs += $HighSecComputer 
+	if ($OSVersion.Version.Build -eq 22621){
+        $Deltas += $DeltaW11_22H2HighSecComputer
+    }
+}
+if ($Level -in @("HighSecurityCredGuard")){ 
+	$GPOs += $HighSecCredGuard 
+	if ($OSVersion.Version.Build -eq 22621){
+		$Deltas += $DeltaW11_22H2HighSecCredGuard
+    }
+}
+
 
 if ($Level -in @("Basic","BasicPrivacy")){
     $GPOs += $BasicPrivacy
@@ -236,6 +261,7 @@ if ($Level -in @("Basic","BasicPrivacy")){
 }
 
 LogAndShowProgress "Copying Custom Administrative Templates"
+# todo: use templates for Windows 11 22H2 on newer systems
 Copy-Item -Force -Path .\Templates\*.admx -Destination "$Env:Systemroot\PolicyDefinitions"
 Copy-Item -Force -Path .\Templates\en-US\*.adml -Destination "$Env:Systemroot\PolicyDefinitions\en-US"
 Log $dline
@@ -260,6 +286,12 @@ foreach ($d in $Deltas){
     LogAndShowProgress "Applying GPO: $d"
     RunLGPO "/v /t `"$d`""
     Log $dline
+}
+
+if ($AddW11_22H2BasicSecDomain){
+    LogAndShowProgress "Applying GPO: $DeltaW11_22H2BasicSecDomain"
+	RunLGPO "v /s `"$DeltaW11_22H2BasicSecDomain`""
+	Log $dline
 }
 
 # Experimental / untested
