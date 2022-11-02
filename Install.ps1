@@ -50,10 +50,11 @@ function Warn([string]$Msg){
 # Check if supported Windows build
 # Windows 11 22H2 - 22621
 # Windows 11 21H2 - 22000
+# Windows 10 22H2 - 19045
 # Windows 10 21H2 - 19044
 # Windows 10 21H1 - 19043
 $OSVersion = [environment]::OSVersion
-if (-not $OSVersion.Version.Build -in @(19043,19044,22000,22621)){
+if (-not $OSVersion.Version.Build -in @(19043,19044,19045,22000,22621)){
     $Msg = "Unsupported version of Windows detected. Some settings might not work as intended. " `
     + "Do you want to continue?"
     Warn $Msg
@@ -166,6 +167,8 @@ $DeltaW11_22H2BasicSecComputer = ".\GPOs\Deltas\W11_22H2\BasicSecComputer.txt"
 $DeltaW11_22H2BasicSecDomain = ".\GPOs\Deltas\W11_22H2\BasicSecDomain\GptTmpl.inf"
 $DeltaW11_22H2HighSecComputer = ".\GPOs\Deltas\W11_22H2\HighSecComputer.txt"
 $DeltaW11_22H2HighSecCredGuard = ".\GPOs\Deltas\W11_22H2\HighSecCredGuard.txt"
+$DeltaW10_22H2BasicSecDomain = ".\GPOs\Deltas\W11_22H2\BasicSecDomain\GptTmpl.inf"
+$DeltaW10_22H2HighSecComputer = ".\GPOs\Deltas\W11_22H2\HighSecComputer.txt"
 
 # Determine which GPOs to import
 $GPOs = @()
@@ -187,6 +190,11 @@ if ($Level -in @("Basic","BasicSecurity")){
 		$AddW11_22H2BasicSecDomain = $true
     }
 
+	if ($OSVersion.Version.Build -eq 19045){
+        $Deltas += $DeltaW10_22H2BasicSecComputer
+		$AddW10_22H2BasicSecDomain = $true
+    }    
+
     # Warn against self-lockout if user is connected remotely on a public network
     if ("Public" -in (Get-NetConnectionProfile).NetworkCategory){
         $Msg = 'You are on a "Public" network profile and are about to apply settings that ' `
@@ -207,6 +215,10 @@ if ($Level -in @("HighSecurity")){
         $Deltas += $DeltaW11_22H2HighSecComputer
 		$Deltas += $DeltaW11_22H2HighSecCredGuard
     }
+
+    if ($OSVersion.Version.Build -eq 19045){
+        $Deltas += $DeltaW10_22H2HighSecComputer
+    }
 }
 
 if ($Level -in @("HighSecurityBitlocker")){ $GPOs += $HighSecBitlocker }
@@ -215,6 +227,9 @@ if ($Level -in @("HighSecurityComputer")) {
 	$GPOs += $HighSecComputer 
 	if ($OSVersion.Version.Build -eq 22621){
         $Deltas += $DeltaW11_22H2HighSecComputer
+    }
+    if ($OSVersion.Version.Build -eq 19045){
+        $Deltas += $DeltaW10_22H2HighSecComputer
     }
 }
 if ($Level -in @("HighSecurityCredGuard")){ 
@@ -291,6 +306,12 @@ foreach ($d in $Deltas){
 if ($AddW11_22H2BasicSecDomain){
     LogAndShowProgress "Applying GPO: $DeltaW11_22H2BasicSecDomain"
 	RunLGPO "/v /s `"$DeltaW11_22H2BasicSecDomain`""
+	Log $dline
+}
+
+if ($AddW10_22H2BasicSecDomain){
+    LogAndShowProgress "Applying GPO: $DeltaW10_22H2BasicSecDomain"
+	RunLGPO "/v /s `"$DeltaW10_22H2BasicSecDomain`""
 	Log $dline
 }
 

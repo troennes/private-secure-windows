@@ -1,0 +1,22 @@
+; ----------------------------------------------------------------------
+; LGPO-text file, used with LGPO.exe.
+;
+; from MSFT Windows 11 22H2 - Computer
+
+
+Computer
+Software\Policies\Microsoft\Windows NT\Printers
+CopyFilesPolicy
+DWORD:1
+
+Computer
+SYSTEM\CurrentControlSet\Control\Print
+RpcAuthnLevelPrivacyEnabled
+DWORD:1
+
+Computer
+Software\Policies\Microsoft\Windows NT\Printers
+RedirectionGuardPolicy
+DWORD:1
+
+; ----------------------------------------------------------------------
