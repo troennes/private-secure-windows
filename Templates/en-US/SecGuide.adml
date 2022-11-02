@@ -37,7 +37,11 @@ For more information, see http://support.microsoft.com/kb/2871997 and http://blo
       <string id="Pol_SecGuide_LsassAudit">Lsass.exe audit mode</string>
       <string id="Pol_SecGuide_LsassAudit_Help">Enable auditing of Lsass.exe to evaluate feasibility of enabling LSA protection. For more information, see http://technet.microsoft.com/en-us/library/dn408187.aspx</string>
       <string id="Pol_SecGuide_LsassRunAsPPL">LSA Protection</string>
-      <string id="Pol_SecGuide_LsassRunAsPPL_Help">Enable LSA protection. For more information, see http://technet.microsoft.com/en-us/library/dn408187.aspx</string>
+      <string id="Pol_SecGuide_LsassRunAsPPL_Help">For Windows 11, version 22H2 and beyond a new setting is used to configure this. IT can be located at 'System\Local Security Authority\Configures LSASS to run as a protected process' which provides additional configuration options.
+	  
+Enable LSA protection.
+	  
+For more information, see http://technet.microsoft.com/en-us/library/dn408187.aspx</string>
       <string id="Pol_SecGuide_RemoveRunasdifferentuser">Remove "Run As Different User" from context menus</string>
       <string id="Pol_SecGuide_RemoveRunasdifferentuser_Help">This setting controls whether "Run As Different User" appears on the Shift+RightClick context menu for .bat, .cmd, .exe, and .msc files.
 
@@ -56,8 +60,12 @@ Computer Configuration\Administrative Templates\Windows Components\Windows Defen
 
 If this setting is disabled or not configured, SEHOP is not enforced for 32-bit processes.
 </string>
-      <string id="Pol_SecGuide_PrintDriver">Limits print driver installation to Administrators</string>
+      <string id="Pol_SecGuide_PrintDriver">Limits print driver installation to Administrators (DEPRECATED)</string>
       <string id="Pol_SecGuide_PrintDriver_Help">
+This setting has moved to a new inbox location which can be found at Printers\Limits print driver installation to Administrators.
+
+NOTE - This derecated setting shares the same registry entry as the new one.
+
 Determines whether users that aren't Administrator can install print drivers on this computer.
 
 By default, users that aren't Administrators can't install print drivers on this computer.
@@ -176,6 +184,32 @@ If Disabled or Not Configured JScript will function without any restrictions.
 
 The values are set in hexadecimal and should be converted prior to changing the setting value. To learn more about Internet Explorer Feature Control Key and the Restrict JScript process-level policy for Windows, please refer to: https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/general-info/ee330734(v=vs.85)#restrict-jscript-at-a-process-level </string>
 
+      <string id="Pol_SecGuide_RpcIncomingAuthenticationLevelPolicy">Configure RPC packet level privacy setting for incoming connections</string>
+      <string id="Pol_SecGuide_RpcIncomingAuthenticationLevelPolicy_Help">
+This policy setting controls whether packet level privacy is enabled for RPC for incoming connections.
+
+By default packet level privacy is enabled for RPC for incoming connections.
+
+If you enable or do not configure this policy setting, packet level privacy is enabled for RPC for incoming connections.</string>
+
+      <string id="CopyFilesPolicy">Manage processing of Queue-specific files</string>
+      <string id="CopyFilesPolicy_AllowAll">Allow all Queue-specfic files</string>
+      <string id="CopyFilesPolicy_Disabled">Do not allow Queue-specific files</string>
+      <string id="CopyFilesPolicy_Help">
+Manages how Queue-specific files are processed during printer installation. At printer installation time, a vendor-supplied installation application can specify a set of files, of any type, to be associated with a particular print queue. The files are downloaded to each client that connects to the print server.
+
+You can enable this setting to change the default behavior involving queue-specific files. To use this setting, select one of the options below from the "Manage processing of Queue-specific files" box.
+
+If you disable or do not configure this policy setting, the default behavior is "Limit Queue-specific files to Color profiles".
+
+--  "Do not allow Queue-specific files" specifies that no queue-specific files will be allowed/processed during print queue/printer connection installation.
+
+--  "Limit Queue-specific files to Color profiles" specifies that only queue-specific files that adhere to the standard color profile scheme will be allowed. This means entries using the Registry Key CopyFiles\ICM, containing a Directory value of COLOR and supporting mscms.dll as the Module value. "Limit Queue-specific files to Color profiles" is the default behavior.
+
+--  "Allow all Queue-specific files" specifies that all queue-specific files will be allowed/processed during print queue/printer connection installation.
+      </string>
+      <string id="CopyFilesPolicy_ICMOnly">Limit Queue-specific files to Color profiles</string>
+
 
     </stringTable>
 
@@ -206,6 +240,10 @@ The values are set in hexadecimal and should be converted prior to changing the 
                 <decimalTextBox refId="POL_SG_outlook" defaultValue="69632"> Outlook: </decimalTextBox>
                 <decimalTextBox refId="POL_SG_msaccess" defaultValue="69632"> Access: </decimalTextBox>
 			  </presentation>
+		   <presentation id="CopyFilesPolicy">
+               <text>Select the method by which Queue-specific files will be processed.</text>
+               <dropdownList defaultItem="1" noSort="true" refId="CopyFilesPolicy_Enum">Manage processing of Queue-Specific files:</dropdownList>
+          </presentation>
       </presentationTable>
 
   </resources>
