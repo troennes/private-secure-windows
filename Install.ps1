@@ -167,8 +167,8 @@ $DeltaW11_22H2BasicSecComputer = ".\GPOs\Deltas\W11_22H2\BasicSecComputer.txt"
 $DeltaW11_22H2BasicSecDomain = ".\GPOs\Deltas\W11_22H2\BasicSecDomain\GptTmpl.inf"
 $DeltaW11_22H2HighSecComputer = ".\GPOs\Deltas\W11_22H2\HighSecComputer.txt"
 $DeltaW11_22H2HighSecCredGuard = ".\GPOs\Deltas\W11_22H2\HighSecCredGuard.txt"
-$DeltaW10_22H2BasicSecDomain = ".\GPOs\Deltas\W11_22H2\BasicSecDomain\GptTmpl.inf"
-$DeltaW10_22H2HighSecComputer = ".\GPOs\Deltas\W11_22H2\HighSecComputer.txt"
+$DeltaW10_22H2BasicSecDomain = ".\GPOs\Deltas\W10_22H2\BasicSecDomain\GptTmpl.inf"
+$DeltaW10_22H2HighSecComputer = ".\GPOs\Deltas\W10_22H2\HighSecComputer.txt"
 
 # Determine which GPOs to import
 $GPOs = @()
