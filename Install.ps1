@@ -48,13 +48,14 @@ function Warn([string]$Msg){
 }
 
 # Check if supported Windows build
+# Windows 11 23H2 - 22631
 # Windows 11 22H2 - 22621
 # Windows 11 21H2 - 22000
 # Windows 10 22H2 - 19045
 # Windows 10 21H2 - 19044
 # Windows 10 21H1 - 19043
 $OSVersion = [environment]::OSVersion
-if (-not $OSVersion.Version.Build -in @(19043,19044,19045,22000,22621)){
+if (-not $OSVersion.Version.Build -in @(19043,19044,19045,22000,22621,22631)){
     $Msg = "Unsupported version of Windows detected. Some settings might not work as intended. " `
     + "Do you want to continue?"
     Warn $Msg
@@ -184,11 +185,11 @@ if ($Level -in @("Basic","BasicSecurity")){
     $GPOs += $BasicSecDomain
     $GPOs += $BasicSecUser
 
-    if ($OSVersion.Version.Build -in @(22000,22621)){
+    if ($OSVersion.Version.Build -ge 22000){
         $Deltas += $DeltaW11_21H2BasicSecurity
     }
 	
-	if ($OSVersion.Version.Build -eq 22621){
+	if ($OSVersion.Version.Build -ge 22621){
         $Deltas += $DeltaW11_22H2BasicSecComputer
 		$AddW11_22H2BasicSecDomain = $true
     }
@@ -214,7 +215,7 @@ if ($Level -in @("HighSecurity")){
     $GPOs += $HighSecCredGuard
     $GPOs += $HighSecDomain
 	
-	if ($OSVersion.Version.Build -eq 22621){
+	if ($OSVersion.Version.Build -ge 22621){
         $Deltas += $DeltaW11_22H2HighSecComputer
 		$Deltas += $DeltaW11_22H2HighSecCredGuard
     }
@@ -228,7 +229,7 @@ if ($Level -in @("HighSecurityBitlocker")){ $GPOs += $HighSecBitlocker }
 if ($Level -in @("HighSecurityDomain"))   { $GPOs += $HighSecDomain }
 if ($Level -in @("HighSecurityComputer")) { 
 	$GPOs += $HighSecComputer 
-	if ($OSVersion.Version.Build -eq 22621){
+	if ($OSVersion.Version.Build -ge 22621){
         $Deltas += $DeltaW11_22H2HighSecComputer
     }
     if ($OSVersion.Version.Build -eq 19045){
@@ -237,7 +238,7 @@ if ($Level -in @("HighSecurityComputer")) {
 }
 if ($Level -in @("HighSecurityCredGuard")){ 
 	$GPOs += $HighSecCredGuard 
-	if ($OSVersion.Version.Build -eq 22621){
+	if ($OSVersion.Version.Build -ge 22621){
 		$Deltas += $DeltaW11_22H2HighSecCredGuard
     }
 }
@@ -246,7 +247,7 @@ if ($Level -in @("HighSecurityCredGuard")){
 if ($Level -in @("Basic","BasicPrivacy")){
     $GPOs += $BasicPrivacy
 
-    if ($OSVersion.Version.Build -in @(22000,22621)){
+    if ($OSVersion.Version.Build -ge 22000){
         $Deltas += $DeltaW11_21H2BasicPrivacy
     }
 

@@ -9,5 +9,9 @@ SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Dsh
 AllowNewsAndInterests
 DWORD:0
 
+Computer
+SOFTWARE\Policies\Microsoft\Windows\CloudContent
+DisableCloudOptimizedContent
+DWORD:1
 
 ; ----------------------------------------------------------------------
