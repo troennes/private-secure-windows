@@ -67,7 +67,7 @@ Advanced use and more granular control:
 The Install script will detect your version and apply supported settings. The current versions are supported:
 
 - Windows 10 (21H1, 21H2 and 22H2)
-- Windows 11 (21H2 and 22H2)
+- Windows 11 (21H2, 22H2 and 23H2)
 
 In both cases, the **Enterprise** or **Education** editions of Windows are recommended. Pro will partially work, but some settings, such as telemetry, cannot be set to the desired level.
 
